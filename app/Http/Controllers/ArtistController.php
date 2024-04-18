@@ -39,9 +39,9 @@ class ArtistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Artist $artist)
     {
-        //
+        return view('artists.show', ['artist' => $artist, 'countries' => Country::all()]);
     }
 
     /**

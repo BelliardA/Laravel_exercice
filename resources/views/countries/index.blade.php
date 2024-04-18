@@ -20,7 +20,7 @@
         </tbody>
     </table>
     <div class="previous-next">
-        <h1 style="color: white">{{ $countries->links() }}</h1>
+        <h1 style="color: white ; ">{{ $countries->links() }}</h1>
     </div>
     <a class="submit-form" href="{{ route('country.create') }}">{{ __('Create') }}</a>
 

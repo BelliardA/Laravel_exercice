@@ -32,6 +32,7 @@
                     <td class="table-action">
                         <a href="{{ route('movie.edit', $movie->id) }}">{{ __('Edit') }}</a>
                         <a href="{{ route('movie.destroy', $movie->id) }}" class="delete">{{ __('Delete') }}</a>
+                        <a href="{{ route('movie.show', $movie->id) }}">{{ __('Show') }}</a>
                     </td>
                 </tr>
             @endforeach

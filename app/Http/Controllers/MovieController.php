@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Http\Requests\MovieRequest;
 use App\Models\Artist;
+use Intervention\Image\Laravel\Facades\Image;
 use App\Models\Country;
 
 class MovieController extends Controller
@@ -23,6 +24,7 @@ class MovieController extends Controller
      */
     public function create(Movie $movie)
     {
+        
         return view('movies.create', ['movie' => $movie, 'artists' => Artist::all(),  'countries' => Country::all()]);
     }
 
@@ -31,8 +33,11 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
-        Movie::create($request->validated());
+        $movie = Movie::create($request->validated());
 
+        $poster = $request->file( 'poster' );
+        $filename = 'poster_' . $movie->id . '.' . $poster->guessClientExtension();
+        Image::read( $poster )->cover( 180, 240 )->save( storage_path( 'app/public/uploads/posters/' . $filename ) );
         return redirect()->route('movie.index')->with('ok', __('Movie has been saved'));
     }
 
@@ -41,7 +46,8 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return view('movies.show', ['movie' => $movie]);
+        
+        return view('movies.show', ['movie' => $movie, 'artists' => Artist::all(),  'countries' => Country::all()]);
     }
 
     /**
@@ -57,6 +63,10 @@ class MovieController extends Controller
      */
     public function update(MovieRequest $request, Movie $movie)
     {
+        $poster = $request->file( 'poster' );
+        $filename = 'poster_' . $movie->id . '.' . $poster->guessClientExtension();
+        Image::read( $poster )->cover( 180, 240 )->save( storage_path( 'app/public/uploads/posters/' . $filename ) );
+
         $movie->update($request->validated());
         return redirect()->route('movie.index')->with('ok', __('Movie has been updated'));
     }

@@ -15,7 +15,7 @@
             <p>
                 A jouer dans :
                 @foreach ($artist->hasPlayed as $film)
-                    {{ $film->title }}
+                    {{ $film->title }} dans le role de : {{ $film->pivot->role_name }}
                 @endforeach
             </p>
             <a href="{{ route('artist.edit', $artist->id) }}"

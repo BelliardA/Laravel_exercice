@@ -1,5 +1,5 @@
 <x-app>
-    <form class="form" method="POST" action="{{ route('movie.update', $movie->id) }}">
+    <form enctype="multipart/form-data" class="form" method="POST" action="{{ route('movie.update', $movie->id) }}">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <p>
@@ -31,6 +31,12 @@
                 @endforeach
             </select>
         </p>
+        <div class="mb-4">
+            <label for="poster" class="block text-gray-700 font-bold mb-2">Photo :</label>
+            <input type="file" name="poster" id="poster" value="" required
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-indigo-600">
+            
+        </div>
         <button class="submit-form" type="submit">Update</button>
     </form>
 </x-app>

@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
             CountriesTableSeeder::class,
             ArtistsTableSeeder::class,
             MoviesTableSeeder::class,
+            CinemasTableSeeder::class,
+            SallesTableSeeder::class,
+            SeancesTableSeeder::class,
             ]);
            
     }
